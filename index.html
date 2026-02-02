@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet on the Go | Premium Street Food</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <!-- SEO & Social Sharing -->
+    <meta name="description"
+        content="Grand Falls-Windsor's premier food truck. Big Flavors. Newfoundland Style. Serving handcrafted burgers, fries, and poutine.">
+    <meta property="og:title" content="Gourmet on the Go | Premium Street Food">
+    <meta property="og:description"
+        content="Grand Falls-Windsor's premier food truck. Big Flavors. Newfoundland Style.">
+    <meta property="og:image" content="assets/images/burger-classic.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Rubik+Spray+Paint&family=Urbanist:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gourmet-yellow': '#FFD700', // Bright street yellow
+                        'gourmet-red': '#E63946',    // Ketchup/Appetite red
+                        'gourmet-dark': '#121212',   // Deep asphalt black
+                        'gourmet-gray': '#1E1E1E',
+                        'gourmet-teal': '#00A6A6',   // Brand teal from logo
+                    },
+                    fontFamily: {
+                        'display': ['Anton', 'sans-serif'],
+                        'graffiti': ['Rubik Spray Paint', 'cursive'],
+                        'body': ['Urbanist', 'sans-serif'],
+                        'hand': ['Permanent Marker', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'scribble': "url('https://www.transparenttextures.com/patterns/black-felt.png')",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for visual flair */
+        .clip-path-slant {
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+        }
+
+        .text-stroke {
+            -webkit-text-stroke: 1px #fff;
+            color: transparent;
+        }
+
+        .text-stroke-black {
+            -webkit-text-stroke: 2px #000;
+        }
+
+        .scribble-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .scribble-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 8px;
+            background: url("data:image/svg+xml,%3Csvg width='200' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10 Q 50 20 95 10 T 185 10' stroke='%23FFD700' stroke-width='4' fill='none'/%3E%3C/svg%3E");
+            background-size: cover;
+            z-index: -1;
+        }
+
+        /* Smooth blending for the logo if it has a white bg */
+        .logo-blend {
+            /* Since the uploaded logo likely has a background, we frame it nicely instead of blending */
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+        }
+
+        /* Graffiti yellow glow effect */
+        .gourmet-yellow-glow {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6),
+                0 0 20px rgba(255, 215, 0, 0.4),
+                0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        /* Playful wiggle rotation */
+        .wiggle-rotate {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .wiggle-rotate:hover {
+            transform: rotate(3deg) scale(1.05);
+        }
+
+        /* Spray paint texture overlay */
+        .graffiti-texture {
+            position: relative;
+        }
+
+        .graffiti-texture::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='30' r='3' fill='%23FFD700' opacity='0.3'/%3E%3Ccircle cx='80' cy='50' r='2' fill='%2300A6A6' opacity='0.2'/%3E%3Ccircle cx='150' cy='20' r='4' fill='%23FFD700' opacity='0.25'/%3E%3Ccircle cx='40' cy='120' r='2' fill='%2300A6A6' opacity='0.15'/%3E%3Ccircle cx='170' cy='140' r='3' fill='%23FFD700' opacity='0.2'/%3E%3Ccircle cx='100' cy='180' r='2' fill='%2300A6A6' opacity='0.25'/%3E%3Ccircle cx='60' cy='80' r='1.5' fill='%23FFD700' opacity='0.3'/%3E%3Ccircle cx='130' cy='100' r='2.5' fill='%2300A6A6' opacity='0.2'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Splatter decoration */
+        .splatter-left::after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='15' fill='%2300A6A6' opacity='0.3'/%3E%3Ccircle cx='15' cy='20' r='8' fill='%23FFD700' opacity='0.4'/%3E%3Ccircle cx='45' cy='40' r='6' fill='%2300A6A6' opacity='0.25'/%3E%3Ccircle cx='20' cy='45' r='4' fill='%23FFD700' opacity='0.3'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        /* Drip effect for sections */
+        .paint-drip {
+            position: relative;
+        }
+
+        .paint-drip::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L20 0 L20 8 Q20 15 15 18 Q10 20 10 15 L10 0 M80 0 L95 0 L95 12 Q95 18 90 20 Q85 18 85 12 L85 0 M180 0 L195 0 L195 6 Q195 10 190 12 Q185 10 185 6 L185 0 M280 0 L300 0 L300 10 Q300 16 295 18 Q290 16 290 10 L290 0 M350 0 L365 0 L365 8 Q365 12 360 14 Q355 12 355 8 L355 0' fill='%23FFD700' opacity='0.5'/%3E%3C/svg%3E");
+            background-size: 400px 20px;
+            background-repeat: repeat-x;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gourmet-dark text-white font-body selection:bg-gourmet-yellow selection:text-black overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-gourmet-dark/95 backdrop-blur-sm border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <span class="font-display text-2xl tracking-wide text-gourmet-yellow uppercase">Gourmet<span
+                            class="text-white">OTG</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#menu"
+                            class="hover:text-gourmet-yellow transition-colors duration-300 px-3 py-2 rounded-md text-sm font-bold uppercase tracking-wider">Menu</a>
+                        <a href="#about"
+                            class="hover:text-gourmet-yellow transition-colors duration-300 px-3 py-2 rounded-md text-sm font-bold uppercase tracking-wider">Our
+                            Story</a>
+                        <a href="#location"
+                            class="hover:text-gourmet-yellow transition-colors duration-300 px-3 py-2 rounded-md text-sm font-bold uppercase tracking-wider">Find
+                            Us</a>
+                        <a href="#catering"
+                            class="hover:text-gourmet-yellow transition-colors duration-300 px-3 py-2 rounded-md text-sm font-bold uppercase tracking-wider">Catering</a>
+                    </div>
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-gourmet-gray border-t border-gray-700" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#menu"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Menu</a>
+                <a href="#about"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Our
+                    Story</a>
+                <a href="#location"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Find
+                    Us</a>
+                <a href="#catering"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Catering</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=2565&auto=format&fit=crop"
+                alt="Juicy Burger" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-b from-gourmet-dark/80 via-gourmet-dark/40 to-gourmet-dark">
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 text-center mt-16">
+            <!-- Logo Container -->
+            <div
+                class="mx-auto w-64 md:w-80 mb-2 transform hover:scale-105 transition-transform duration-500 logo-blend">
+                <img src="assets/images/logo.png" alt="Gourmet on the Go Logo" class="w-full h-auto drop-shadow-2xl">
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display uppercase tracking-tighter leading-none mb-6">
+                Big Flavors.<br>
+                <span
+                    class="inline-block text-gourmet-yellow text-stroke-black drop-shadow-[0_4px_0_rgba(0,0,0,1)] font-hand -rotate-3 transform origin-center mt-2">Street
+                    Style.</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
+                Newfoundland's Premier food truck. We bring the gourmet comfort food to <span
+                    class="text-gourmet-yellow font-bold">YOU</span>.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+                <a href="https://www.google.com/maps/place/?q=place_id:ChIJ3VCjllc7d0sRQRyLmXn7i_M" target="_blank"
+                    class="border-2 border-white text-white font-display text-xl uppercase tracking-wider px-10 py-4 rounded-sm hover:bg-white hover:text-black transition-all duration-300 w-full sm:w-auto">
+                    Find The Truck
+                </a>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gourmet-dark to-transparent"></div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 bg-gourmet-dark relative">
+        <!-- Graffiti background element -->
+        <div class="absolute top-10 right-0 opacity-10 pointer-events-none">
+            <i class="fas fa-hamburger text-9xl"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 graffiti-texture">
+                <span
+                    class="font-hand text-gourmet-yellow text-2xl rotate-6 inline-block mb-2 wiggle-rotate gourmet-yellow-glow">Fresh
+                    off the
+                    grill</span>
+                <h2 class="text-5xl md:text-6xl font-graffiti uppercase tracking-tight text-white">The <span
+                        class="scribble-underline text-gourmet-yellow gourmet-yellow-glow">Menu</span></h2>
+            </div>
+
+            <!-- Categories -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="showCategory('burgers')" id="btn-burgers"
+                    class="category-btn px-6 py-2 rounded-full border border-gourmet-yellow bg-gourmet-yellow text-black font-bold uppercase transition-all">Burgers</button>
+                <button onclick="showCategory('fries')" id="btn-fries"
+                    class="category-btn px-6 py-2 rounded-full border border-gray-600 text-gray-400 hover:border-white hover:text-white font-bold uppercase transition-all">Fries</button>
+                <button onclick="showCategory('everything')" id="btn-everything"
+                    class="category-btn px-6 py-2 rounded-full border border-gray-600 text-gray-400 hover:border-white hover:text-white font-bold uppercase transition-all">Everything
+                    Else</button>
+            </div>
+
+            <!-- Menu Items Container -->
+            <div class="relative max-w-6xl mx-auto">
+
+                <!-- BURGERS CATEGORY -->
+                <div id="category-burgers" class="category-content">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Single OG -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <span
+                                    class="absolute top-3 left-3 bg-gourmet-yellow text-black font-bold px-2 py-1 text-xs uppercase tracking-wider z-10 rounded-sm transform -rotate-3 shadow-lg">Classic</span>
+                                <img src="assets/images/burger-classic.jpg" alt="Single OG Burger"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $10.00
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">Single OG</h3>
+                                <p class="text-gray-400 text-sm">Our signature classic beef burger</p>
+                            </div>
+                        </div>
+                        <!-- Double OG -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="assets/images/burger-smokehouse.jpg" alt="Double OG Burger"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $15.50
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">Double OG</h3>
+                                <p class="text-gray-400 text-sm">Two juicy patties, melted cheese, and our signature
+                                    sauce.</p>
+                            </div>
+                        </div>
+                        <!-- OG Crunch Chicken -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <span
+                                    class="absolute top-3 left-3 bg-gourmet-teal text-white font-bold px-2 py-1 text-xs uppercase tracking-wider z-10 rounded-sm transform -rotate-3 shadow-lg">Popular</span>
+                                <img src="assets/images/burger-classic.jpg" alt="OG Crunch Chicken"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $12.50
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">OG Crunch Chicken</h3>
+                                <p class="text-gray-400 text-sm">Crispy fried chicken breast, fresh lettuce, and mayo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FRIES CATEGORY -->
+                <div id="category-fries" class="category-content hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Regular Fries -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="assets/images/fries-regular.jpg" alt="Regular Fries"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $5.00
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">Regular Fries</h3>
+                                <p class="text-gray-400 text-sm">Golden crispy perfection</p>
+                            </div>
+                        </div>
+                        <!-- Spicy Dill Pickle Poutine -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <span
+                                    class="absolute top-3 left-3 bg-gourmet-yellow text-black font-bold px-2 py-1 text-xs uppercase tracking-wider z-10 rounded-sm transform -rotate-3 shadow-lg">Spicy!</span>
+                                <img src="assets/images/fries-poutine.jpg" alt="Spicy Dill Pickle Poutine"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $12.00
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">Spicy Dill Poutine</h3>
+                                <p class="text-gray-400 text-sm">Classic poutine with a spicy kick and dill pickles</p>
+                            </div>
+                        </div>
+                        <!-- OG Mess -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <span
+                                    class="absolute top-3 left-3 bg-gourmet-teal text-white font-bold px-2 py-1 text-xs uppercase tracking-wider z-10 rounded-sm transform -rotate-3 shadow-lg">Loaded!</span>
+                                <img src="assets/images/fries-regular.jpg" alt="OG Mess"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $14.00
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">OG Mess</h3>
+                                <p class="text-gray-400 text-sm">Fries loaded with everything delicious!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVERYTHING ELSE CATEGORY -->
+                <div id="category-everything" class="category-content hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Chicken Fingers -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="assets/images/chicken-fingers.jpg" alt="Chicken Fingers"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $11.00
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">Chicken Fingers</h3>
+                                <p class="text-gray-400 text-sm">Crispy golden tenders</p>
+                            </div>
+                        </div>
+                        <!-- Onion Rings -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="assets/images/onion-rings.jpg" alt="Onion Rings"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $7.00
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">Onion Rings</h3>
+                                <p class="text-gray-400 text-sm">Beer-battered and crispy</p>
+                            </div>
+                        </div>
+                        <!-- Stadium Dog -->
+                        <div
+                            class="group bg-gourmet-gray rounded-xl overflow-hidden border border-gray-800 hover:border-gourmet-yellow transition-all duration-300 hover:shadow-[0px_0px_20px_rgba(255,215,0,0.2)]">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="assets/images/burger-smokehouse.jpg" alt="Stadium Dog"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute top-3 right-3 bg-gourmet-yellow text-black font-bold px-2 py-1 rounded-full text-sm shadow-lg">
+                                    $9.00
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-xl font-display uppercase mb-1">Stadium Dog</h3>
+                                <p class="text-gray-400 text-sm">Jumbo all-beef hot dog</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+
+        <script>
+            function showCategory(category) {
+                // Hide all category contents
+                document.querySelectorAll('.category-content').forEach(el => {
+                    el.classList.add('hidden');
+                });
+
+                // Reset all button styles
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('border-gourmet-yellow', 'bg-gourmet-yellow', 'text-black');
+                    btn.classList.add('border-gray-600', 'text-gray-400');
+                });
+
+                // Show selected category
+                document.getElementById('category-' + category).classList.remove('hidden');
+
+                // Highlight selected button
+                const activeBtn = document.getElementById('btn-' + category);
+                activeBtn.classList.remove('border-gray-600', 'text-gray-400');
+                activeBtn.classList.add('border-gourmet-yellow', 'bg-gourmet-yellow', 'text-black');
+            }
+            // Initialize with Burgers category shown
+            document.addEventListener('DOMContentLoaded', () => {
+                showCategory('burgers');
+            });
+        </script>
+
+        <div class="text-center mt-12">
+            <a href="#"
+                class="inline-block border-b-2 border-gourmet-yellow text-xl font-bold uppercase tracking-widest hover:text-gourmet-yellow transition-colors">View
+                Full Menu PDF</a>
+        </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-neutral-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <!-- Image Stack -->
+                    <div class="relative z-10 transform -rotate-2 border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?q=80&w=2671&auto=format&fit=crop"
+                            alt="Food Truck"
+                            class="w-full rounded-sm grayscale hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <div
+                        class="absolute top-10 -right-4 w-full h-full border-4 border-gourmet-yellow z-0 transform rotate-3">
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <h4 class="text-gourmet-red font-bold uppercase tracking-widest mb-2">Our Story</h4>
+                    <h2 class="text-5xl font-display uppercase mb-6 leading-tight">Gourmet Food.<br>Moved by Passion.
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-6">
+                        We started with a simple idea: why does "fast food" have to be bad food? Gourmet on the Go was
+                        born out of a beat-up truck and a dream to serve restaurant-quality burgers on the street
+                        corner.
+                    </p>
+                    <p class="text-gray-300 text-lg mb-8">
+                        We grind our beef daily, pickle our own cucumbers, and source our brioche buns from local
+                        bakeries. It’s not just lunch; it’s a handcrafted experience served out of a window.
+                    </p>
+                    <div class="flex gap-8">
+                        <div>
+                            <span class="block text-4xl font-display text-gourmet-yellow">5K+</span>
+                            <span class="text-sm text-gray-400 uppercase tracking-wider">Burgers Flipped</span>
+                        </div>
+                        <div>
+                            <span class="block text-4xl font-display text-gourmet-yellow">100%</span>
+                            <span class="text-sm text-gray-400 uppercase tracking-wider">Organic Beef</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section (Map) -->
+    <section id="location" class="py-20 bg-gourmet-gray border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center graffiti-texture">
+            <h2 class="text-4xl md:text-5xl font-graffiti uppercase mb-4 gourmet-yellow-glow text-gourmet-yellow">Where
+                are we today?</h2>
+            <p class="text-gray-400 mb-10 text-xl">Catch us around town. We're always on the move!</p>
+
+            <div class="bg-neutral-800 p-2 rounded-xl shadow-2xl max-w-4xl mx-auto border border-gray-700">
+                <!-- Placeholder for dynamic map -->
+                <div
+                    class="w-full h-96 bg-neutral-700 rounded-lg flex items-center justify-center relative overflow-hidden group">
+                    <!-- Fake Map Image Background -->
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2674&auto=format&fit=crop"
+                        class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay">
+
+                    <div class="text-center z-10">
+                        <i class="fas fa-map-marker-alt text-gourmet-red text-6xl mb-4 animate-bounce"></i>
+                        <h3 class="text-2xl font-bold text-white mb-2">Current Location:</h3>
+                        <p class="text-gourmet-yellow text-xl font-display tracking-wide uppercase">Grand Falls-Windsor
+                        </p>
+                        <p class="text-gray-300">5 Jones St, NL A2A 2S8</p>
+                        <p class="text-gourmet-yellow font-bold mt-2">Thu-Sun: 4:30 PM - 7:30 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="tel:+17092930723"
+                    class="flex items-center gap-2 bg-gourmet-teal hover:bg-teal-400 text-white px-6 py-3 rounded-md font-bold transition-colors">
+                    <i class="fas fa-phone-alt"></i> (709) 293-0723
+                </a>
+                <a href="https://www.google.com/maps/place/Gourmet+on+the+Go/@48.9285156,-55.6597426,17z"
+                    target="_blank"
+                    class="flex items-center gap-2 bg-gourmet-yellow hover:bg-white text-black px-6 py-3 rounded-md font-bold transition-colors">
+                    <i class="fas fa-location-arrow"></i> Get Directions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Street Cred (Testimonials) -->
+    <section class="py-20 bg-neutral-900 border-t border-gray-800 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+            <div class="absolute top-10 left-10 transform -rotate-12 text-8xl font-display text-white">YUM</div>
+            <div class="absolute bottom-10 right-10 transform rotate-12 text-8xl font-display text-white">TASTY</div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 relative z-10">
+                <span class="font-hand text-gourmet-yellow text-2xl rotate-3 inline-block mb-2">They talk, we
+                    grill</span>
+                <h2 class="text-5xl md:text-6xl font-display uppercase tracking-tight text-white">Street <span
+                        class="scribble-underline text-gourmet-yellow">Cred</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                <!-- Review 1 -->
+                <div
+                    class="bg-gourmet-gray p-8 rounded-xl border border-gray-800 relative hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-gourmet-yellow text-2xl mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"WOW!! They honestly couldn't have picked a better name. Such
+                        amazing food. I would honestly live here just for this food... Also going to miss the lovely
+                        ladies that look our order. Thanks again for the amazing food!!"</p>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center font-bold text-white">
+                            M</div>
+                        <div>
+                            <h4 class="font-bold text-white uppercase">Matthew</h4>
+                            <span class="text-sm text-gray-500">Local Guide</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div
+                    class="bg-gourmet-gray p-8 rounded-xl border border-gray-800 relative hover:-translate-y-2 transition-transform duration-300 md:scale-105 shadow-xl border-gourmet-yellow/30">
+                    <div class="text-gourmet-yellow text-2xl mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="far fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"Finally got to try Gourmet on the Go's Ramen... It was a
+                        really popular option on their menu. It was a very delicious dish & the portion was huge.
+                        Excellent service & food all around. A 🍜 MUST TRY"</p>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center font-bold text-white">
+                            KT</div>
+                        <div>
+                            <h4 class="font-bold text-white uppercase">Ken Thomas</h4>
+                            <span class="text-sm text-gray-500">Local Guide</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div
+                    class="bg-gourmet-gray p-8 rounded-xl border border-gray-800 relative hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-gourmet-yellow text-2xl mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="far fa-star"></i><i class="far fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"Got a regular poutine... service was fast and friendly. Great
+                        that they used curds and kept it authentic... Portion size was good for the price. I'm Gonna try
+                        a burger there another time, hopefully it's better"</p>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center font-bold text-white">
+                            BK</div>
+                        <div>
+                            <h4 class="font-bold text-white uppercase">Brad Kubota</h4>
+                            <span class="text-sm text-gray-500">Local Guide</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catering / Call to Action -->
+    <section id="catering" class="py-24 bg-gourmet-yellow text-gourmet-dark relative overflow-hidden">
+        <!-- Abstract shapes -->
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-white opacity-20 rounded-full transform translate-x-1/2 -translate-y-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-48 h-48 bg-black opacity-10 rounded-full transform -translate-x-1/2 translate-y-1/2">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-5xl md:text-7xl font-graffiti uppercase mb-6 leading-none transform -rotate-1">Party with
+                the Truck</h2>
+            <p class="text-xl md:text-2xl font-bold mb-8">Wedding? Festival? Office Party? We bring the grill to you.
+            </p>
+            <div class="bg-black/10 p-8 rounded-xl backdrop-blur-sm max-w-lg mx-auto transform rotate-1">
+                <p class="mb-6 font-medium">Book us for your next event and get 10% off the total for groups over 50!
+                </p>
+                <a href="mailto:catering@gourmetonthego.com"
+                    class="inline-block bg-black text-white font-display text-xl uppercase px-12 py-4 shadow-xl hover:scale-105 transition-transform">
+                    Request a Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid (Social Proof) -->
+    <section class="py-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-1">
+            <div class="relative group aspect-square overflow-hidden cursor-pointer">
+                <img src="assets/images/burger-smokehouse.jpg"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div
+                    class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fab fa-instagram text-3xl text-white"></i>
+                </div>
+            </div>
+            <div class="relative group aspect-square overflow-hidden cursor-pointer">
+                <img src="assets/images/fries-poutine.jpg"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div
+                    class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fab fa-instagram text-3xl text-white"></i>
+                </div>
+            </div>
+            <div class="relative group aspect-square overflow-hidden cursor-pointer">
+                <img src="assets/images/fries-regular.jpg"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div
+                    class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fab fa-instagram text-3xl text-white"></i>
+                </div>
+            </div>
+            <div class="relative group aspect-square overflow-hidden cursor-pointer">
+                <img src="assets/images/burger-classic.jpg"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div
+                    class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fab fa-instagram text-3xl text-white"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 text-white border-t border-gray-800">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <span class="font-display text-3xl text-gourmet-yellow uppercase block mb-2">Gourmet OTG</span>
+                <p class="text-gray-500 text-sm">© 2024 Gourmet on the Go.<br>All burgers reserved.</p>
+            </div>
+
+            <div class="flex gap-6">
+                <a href="#"
+                    class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gourmet-yellow hover:text-black transition-colors"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="#"
+                    class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gourmet-yellow hover:text-black transition-colors"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="#"
+                    class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gourmet-yellow hover:text-black transition-colors"><i
+                        class="fab fa-tiktok"></i></a>
+            </div>
+
+            <div class="text-center md:text-right">
+                <p class="text-gray-400 mb-2 font-bold uppercase text-sm tracking-wider">Join our Newsletter</p>
+                <form class="flex">
+                    <input type="email" placeholder="Email Address"
+                        class="bg-gray-900 border border-gray-700 px-4 py-2 text-sm focus:outline-none focus:border-gourmet-yellow rounded-l-sm">
+                    <button
+                        class="bg-gourmet-red text-white px-4 py-2 text-sm font-bold uppercase rounded-r-sm hover:bg-red-700 transition-colors">Join</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
